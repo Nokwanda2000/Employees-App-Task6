@@ -5,26 +5,29 @@ function Logo(){
     return(
 
     <>
+    <div className="search">
+<input type="text" className='tt' placeholder="Search.." />
+</div>
+
      <div style={{
       width:"200px",
       height:"200px",
       // backgroundColor:"red",
-      top:"-830px",
-      position:"relative"
+    //   top:"-830px",
+      position:"relative",
+      marginTop:"-340px"
      }}>
     <img id="Image" src={Image}></img>
     </div>
- <div class="topnav">
+ <div className="topnav">
  
-  <a class="active" href="#home">Home</a>
+  <a className="active" href="#home">Home</a>
   <a href="#">Updates</a>
   <a href="#contact">Contact</a>
-  <input type="text" placeholder="Search.." />
-
+  
 </div>
 
-    
-    
+ 
     </>
     )
 }

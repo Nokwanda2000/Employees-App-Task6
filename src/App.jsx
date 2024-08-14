@@ -12,7 +12,6 @@ function App() {
 
   return (
     <>
-    
 
       <section><Search/></section>
       <section><Register/></section>
@@ -21,6 +20,8 @@ function App() {
       
       </section>
       <section><Footer/></section>
+
+      
     </>
   )
 }
