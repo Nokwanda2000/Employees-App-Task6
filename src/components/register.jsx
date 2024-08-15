@@ -37,12 +37,14 @@ function Register(){
             width:"400px",
             height:"400px",
             backgroundColor:"whitesmoke",
-            marginLeft:"600px",
+            marginLeft:"800px",
             marginTop:"400px",
             borderRadius:"10px",
             position:"relative",
-            boxShadow:"11px 11px  #c4f1e6",
-            padding:"20px"
+            boxShadow:"11px 11px rgb(124, 151, 142)",
+            padding:"20px",
+            borderStyle:"solid",
+            borderColor:"green"
             // alignContent: "centre",
             // alignItems:"centre",
             
@@ -139,7 +141,7 @@ function Register(){
     <button style={{
       backgroundColor:"blue",
       color:"white",
-      border:"white",
+      border:"green",
       borderRadius:"10px",
       height: "24px",
       width: "100px",

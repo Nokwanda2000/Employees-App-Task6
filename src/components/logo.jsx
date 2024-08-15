@@ -1,12 +1,28 @@
 import Image from './image.png'
 
+import { useState } from 'react';
+function Logo(props){
 
-function Logo(){
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    props.onSearch(e.target.value);
+  };
     return(
 
     <>
     <div className="search">
-<input type="text" className='tt' placeholder="Search.." />
+<input type="text" className='tt' placeholder="Search.."  value={searchTerm}
+        onChange={handleSearch}  style={{
+          width: "100%",
+          height: "30px",
+          padding: "10px",
+          fontSize: "16px",
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+          marginBottom: "20px"
+        }} />
 </div>
 
      <div style={{
