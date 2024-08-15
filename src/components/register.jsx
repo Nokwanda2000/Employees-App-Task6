@@ -5,62 +5,32 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdContacts } from "react-icons/md";
 
-const local = {
-  name,
-  email,
-  password,
-  phone,
-  position,
-
-}; 
-
-
-
 function Register(){
 
-  const[name,setName] = useState("")
-// console.log("this is the name&Surname value:",name);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [position, setPosition] = useState("");
 
-const[email,setEmail]= useState("")
-// console.log("this is the email value:", email);
-
-const[password,setPassword] = useState("")
-// console.log("this is the password value:", password);
-
-
-const[phone,setPhone] = useState("")
-// console.log("this is the phone value:", phone)
-
-const[position,setPosition] = useState("")
-// console.log("this is the employee position value:",position);
-
-  localStorage.setItem(local,"employees");
-  console.log(localStorage.getItem(local));
-
+  const handleSubmit = () => {
+    const employeeData = {
+      name,
+      email,
+      password,
+      phone,
+      position,
+    };
   
+    let employees = localStorage.getItem("employees");
+    
+        employees = JSON.parse(employees);
+        employees.push(employeeData);
+    localStorage.setItem("employees", JSON.stringify(employees));
+    alert("Employee registered successfully!");
+  };
 
 
-const handleSubmit = ()=>{
-const employeeData= {
-  name,
-  email,
-  password,
-  phone,
-  position,
-
-}; 
-
-let employees = localStorage.getItem(local);
-if (employees) {
-  employees = JSON.parse(employees);
-  employees.push(employeeData);
-} else {
-  employees = [employeeData];
-}
-localStorage.setItem(local, JSON.stringify(employees));
-alert("Employee registered successfully!");
-
-}
   
   return( <>
         <div id="Reg" style={{
@@ -71,8 +41,10 @@ alert("Employee registered successfully!");
             marginTop:"400px",
             borderRadius:"10px",
             position:"relative",
-            alignContent: "centre",
-            alignItems:"centre",
+            boxShadow:"11px 11px  #c4f1e6",
+            padding:"20px"
+            // alignContent: "centre",
+            // alignItems:"centre",
             
         }}>
         <div> <h1 style={{
@@ -133,7 +105,7 @@ alert("Employee registered successfully!");
   Phone
   <br></br>
   <img src="" alt=""></img>
-  <input type="password"
+  <input type="text"
    value={phone}
    onChange={e => setPhone(e.target.value)}></input>
 </div>
@@ -144,7 +116,7 @@ alert("Employee registered successfully!");
    Employee Position
   <br></br>
   <img src="" alt=""></img>
-  <input type="password"
+  <input type="text"
    value={position}
    onChange={e => setPosition(e.target.value)}></input>
   
@@ -154,11 +126,26 @@ alert("Employee registered successfully!");
 <div className="submit-container">
   <div className="submit">
     <button style={{
+      backgroundColor:"green",
+      color:"white",
+      border:"white",
+      borderRadius:"10px",
+      height: "24px",
+      width: "100px",
       
     }}
     
  onClick={handleSubmit}   >Register</button>
-    <button>Login</button>
+    <button style={{
+      backgroundColor:"blue",
+      color:"white",
+      border:"white",
+      borderRadius:"10px",
+      height: "24px",
+      width: "100px",
+     
+      
+    }}>Login</button>
     </div>
 </div>
 
@@ -177,4 +164,6 @@ alert("Employee registered successfully!");
 
   )
 }
+
+
 export default Register;
