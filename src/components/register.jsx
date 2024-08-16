@@ -14,6 +14,7 @@ function Register(){
   const [position, setPosition] = useState("");
 
   const handleSubmit = () => {
+   // It creates an object employeeData that contains the employee's details.//
     const employeeData = {
       name,
       email,
@@ -21,12 +22,14 @@ function Register(){
       phone,
       position,
     };
-  
+  //It retrieves the existing employees data from local storage using localStorage.getItem("employees").//
     let employees = localStorage.getItem("employees");
-    
+   //It parses the retrieved data as JSON and adds the new employee's data to the array.// 
         employees = JSON.parse(employees);
+   //It saves the updated array to local storage using localStorage.setItem("employees", JSON.stringify(employees)).//     
         employees.push(employeeData);
     localStorage.setItem("employees", JSON.stringify(employees));
+    window.location.reload();
     alert("Employee registered successfully!");
   };
 

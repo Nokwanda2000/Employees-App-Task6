@@ -4,9 +4,11 @@ import React, { useState } from "react";
 function Search(props) {
   const [searchTerm, setSearchTerm] = useState("");
 
+
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     props.onSearch(e.target.value);
+    
   };
 
   return (
