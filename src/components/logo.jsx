@@ -35,7 +35,10 @@ function Logo(props){
      }}>
     <img id="Image" src={Image}></img>
     </div>
- <div className="topnav">
+ <div style={{
+  width:"100%",
+  height:"100%"
+ }} className="topnav">
  
   <a className="active" href="#home">Home</a>
   <a href="#">Updates</a>

@@ -54,8 +54,8 @@ function Myteam() {
   return (
     <div className="Team" style={{
       backgroundColor: "white",
-      width: "500px",
-      height: "400px",
+      width: "100%",
+      height: "600px",
       marginTop: "-410px",
       borderRadius: "20px",
        marginLeft:"140px",
@@ -93,20 +93,20 @@ function Myteam() {
             ) : (
               <span>{input.name}</span>
             )}
-<br></br>            
+          
             ({editing === index ? (
               <input id={`position-${index}`} type="text" defaultValue={input.position} placeholder="position" />
             ) : (
               <span>{input.position}</span>
             )})
-<br></br>
+
             ({editing === index ? (
               <input  id={`email-${index}`} type="text" defaultValue={input.email} placeholder="email" />
             ) : (
               <span 
               >{input.email}</span>
             )})
-<br></br>
+
               ({editing === index ? (
               <input  id={`password-${index}`} type="text" defaultValue={input.password} placeholder="password" />
             ) : (
