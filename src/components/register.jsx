@@ -59,8 +59,9 @@ function Register() {
         </div>
         <div className="flex-grow p-4">
           <h2 className="text-xl font-semibold text-center text-[black]  mb-6 justify-center">Employee Registration</h2>
-          <p className='text-[red]'>Please register using your details</p>
+          <p className='text-[red]'>Please register using your details:</p>
           <hr></hr>
+          <br></br>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="id" className="block text-sm font-medium text-gray-700">ID</label>

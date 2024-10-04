@@ -30,7 +30,6 @@ export default function Layout() {
           </button>
         </div>
 
-        {/* Navigation Links */}
         <ul className={`fixed inset-0 pr-20 bg-white md:flex md:static md:bg-transparent md:flex-row md:space-x-4 transition-transform transform ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'} md:translate-y-0`}>
           <li className=''>
             <Link 
