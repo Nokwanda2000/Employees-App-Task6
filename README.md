@@ -1,5 +1,7 @@
 <img src="https://socialify.git.ci/Nokwanda2000/Employees-App-Task6/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="Employees-App-Task6" width="640" height="320" />
 # Employees-App-Task6
+
+
 # Run Locally
 
 Clone the project
@@ -9,7 +11,7 @@ Clone the project
 
 Go to the project directory
 ```bash
-  cd Shopping-List
+  cd employees-app-task6
 ```
 
 Install dependencies
