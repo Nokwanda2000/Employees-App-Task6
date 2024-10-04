@@ -26,6 +26,7 @@ const Landingpage = () => {
         </div>
       </div>
     </div>
+
   );
 };
 
