@@ -1,30 +1,35 @@
-import { useState } from 'react'
-import Foot from './components/Foot'
-import Logo from './components/logo'
-import Myteam from './components/my team'
-import Register from './components/register'
-import Search from './components/search'
-import handleSubmit from './components/register';
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import EmployeeList from './components/employeescard';
+import EmployeeForm from './components/register';
+import SearchBar from './components/search';
+import Layout from './pages/layoutpage';
+import Employeespage from './pages/employeespage';
+import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './App.css';
+import Landingpage from './pages/landingpage';
+import Registerpage from './pages/registerpage';
 
 function App() {
- 
 
   return (
-    <>
+    <>   
+<BrowserRouter>
+      <Layout />
+      <Routes>
+        <Route path="/" element={<Landingpage />} />
+        <Route path="/registerpage" element={<Registerpage />} />
+        <Route path="/employeespage" element={<Employeespage />} />
+  
+      </Routes>
 
-      {/* <section><Search/></section> */}
-      <section><Register/></section>
-      <section><Myteam/></section>
-      <section><Logo/>
-      
-      </section>
-     
+      <Footer/>
+    </BrowserRouter>
 
-      
-     
     </>
-  )
+
+
+  );
 }
 
-export default App
+export default App;

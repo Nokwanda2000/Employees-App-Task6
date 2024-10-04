@@ -1,174 +1,130 @@
-import { useState } from "react";
-import { MdAttachEmail } from "react-icons/md";
-import { IoPerson } from "react-icons/io5";
-import { RiLockPasswordFill } from "react-icons/ri";
-import { FaPhoneAlt } from "react-icons/fa";
-import { MdContacts } from "react-icons/md";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Image from '../assets/employee.png';
 
-function Register(){
+function Register() {
+  const [formData, setFormData] = useState({
+    id: '',
+    name: '',
+    email: '',
+    phone: '',
+    position: '',
+    image: '',
+  });
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [position, setPosition] = useState("");
+  const [employees, setEmployees] = useState([]);
+  const navigate = useNavigate();
 
-  const handleSubmit = () => {
-   // It creates an object employeeData that contains the employee's details.//
-    const employeeData = {
-      name,
-      email,
-      password,
-      phone,
-      position,
-    };
-  //It retrieves the existing employees data from local storage using localStorage.getItem("employees").//
-    let employees = localStorage.getItem("employees");
-   //It parses the retrieved data as JSON and adds the new employee's data to the array.// 
-        employees = JSON.parse(employees);
-   //It saves the updated array to local storage using localStorage.setItem("employees", JSON.stringify(employees)).//     
-        employees.push(employeeData);
-    localStorage.setItem("employees", JSON.stringify(employees));
-    window.location.reload();
-    alert("Employee registered successfully!");
+  useEffect(() => {
+    const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+    setEmployees(storedEmployees);
+  }, []);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const updatedEmployees = [...employees, formData];
+    setEmployees(updatedEmployees);
+    localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+    navigate('/employeeList');
+  };
 
-  
-  return( <>
-        <div id="Reg" style={{
-            width:"400px",
-            height:"400px",
-            backgroundColor:"whitesmoke",
-            marginLeft:"800px",
-            marginTop:"400px",
-            borderRadius:"10px",
-            position:"relative",
-            boxShadow:"11px 11px rgb(124, 151, 142)",
-            padding:"20px",
-            borderStyle:"solid",
-            borderColor:"green"
-            // alignContent: "centre",
-            // alignItems:"centre",
-            
-        }}>
-        <div> <h1 style={{
-                alignItems:"center",
-                alignContent:"center",
-                fontStyle:"normal",
-                color:"green",
-                
-                marginLeft:"100px",
-                
-            }}>REGISTER</h1>
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white rounded-lg shadow-md max-w-sm w-full p-6">
+        <h2 className="text-xl font-semibold text-center text-gray-800 mb-4">Employee Registration</h2>
+        <img src={Image} alt="Employee" className="w-20 h-20 mx-auto mb-4" />
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="id" className="block text-sm font-medium text-gray-700">ID</label>
+            <input
+              type="text"
+              name="id"
+              placeholder="Enter ID"
+              value={formData.id}
+              onChange={handleChange}
+              required
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-<div  className="underline"></div>
-</div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-<div className="inputs" 
->
-  <div className="input">
-  <IoPerson />
-    Name & Surname
-  
-    <br></br>
-  <img src=""></img>
-  <input type="text" alt=""
-  value={name}
-  onChange={e => setName(e.target.value)}>
-  
-  </input>
-</div>
-<br></br>
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone</label>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Enter Phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-<div className="input"> 
-<MdAttachEmail />
-  Email
-  <br></br>
-  <img src="" alt=""></img>
-  <input type="email"
-   value={email}
-   onChange={e => setEmail(e.target.value)}>
-  </input>
-</div>
-<br></br>
+          <div>
+            <label htmlFor="position" className="block text-sm font-medium text-gray-700">Position</label>
+            <input
+              type="text"
+              name="position"
+              placeholder="Enter Position"
+              value={formData.position}
+              onChange={handleChange}
+              required
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-<div className="input">
-<RiLockPasswordFill />
-  Password
-  <br></br>
-  <img src="" alt=""></img>
-  <input type="password"
-   value={password}
-   onChange={e => setPassword(e.target.value)}></input>
-</div>
-<br></br>
+          <div>
+            <label htmlFor="image" className="block text-sm font-medium text-gray-700">Image URL</label>
+            <input
+              type="text"
+              name="image"
+              placeholder="Enter Image URL"
+              value={formData.image}
+              onChange={handleChange}
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-<div className="input">
-<FaPhoneAlt />
-  Phone
-  <br></br>
-  <img src="" alt=""></img>
-  <input type="text"
-   value={phone}
-   onChange={e => setPhone(e.target.value)}></input>
-</div>
-<br></br>
-
-<div className="input">
-<MdContacts />
-   Employee Position
-  <br></br>
-  <img src="" alt=""></img>
-  <input type="text"
-   value={position}
-   onChange={e => setPosition(e.target.value)}></input>
-  
-</div>
-</div>
-<br></br>
-<div className="submit-container">
-  <div className="submit">
-    <button style={{
-      backgroundColor:"green",
-      color:"white",
-      border:"white",
-      borderRadius:"10px",
-      height: "24px",
-      width: "100px",
-      
-    }}
-    
- onClick={handleSubmit}   >Register</button>
-    <button style={{
-      backgroundColor:"blue",
-      color:"white",
-      border:"green",
-      borderRadius:"10px",
-      height: "24px",
-      width: "100px",
-     
-      
-    }}>Login</button>
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          >
+            Register Employee
+          </button>
+        </form>
+      </div>
     </div>
-</div>
-
-</div>
-
-</>
-
-
-
-  
-  
-        
-  
-  
-  
-
-  )
+  );
 }
-
 
 export default Register;

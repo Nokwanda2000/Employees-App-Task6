@@ -1,35 +1,40 @@
+import React from 'react';
 
-import React, { useState } from "react";
-
-function Search(props) {
-  const [searchTerm, setSearchTerm] = useState("");
-
-
+function SearchBar({ setSearchTerm }) {
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    props.onSearch(e.target.value);
-    
   };
 
   return (
-    <div>
+    <div style={{
+      maxWidth: '600px',
+      margin: '1rem auto',
+      padding: '1rem',
+      backgroundColor: '#f9f9f9',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+      borderRadius: '8px',
+      textAlign: 'center',
+    }}>
+      <h2 style={{
+        fontSize: '1.5rem',
+        marginBottom: '1rem',
+        color: '#333',
+      }}>Search Employee by ID</h2>
       <input
         type="text"
-        value={searchTerm}
-        onChange={handleSearch}
         placeholder="Search by ID"
+        onChange={handleSearch}
         style={{
-          width: "100%",
-          height: "30px",
-          padding: "10px",
-          fontSize: "16px",
-          border: "1px solid #ccc",
-          borderRadius: "5px",
-          marginBottom: "20px"
+          width: '100%',
+          padding: '0.75rem',
+          fontSize: '1rem',
+          border: '1px solid #ddd',
+          borderRadius: '4px',
+          outline: 'none',
         }}
       />
     </div>
   );
 }
 
-export default Search;
+export default SearchBar;
