@@ -7,7 +7,7 @@ function UpdateEmployee({ addEmployee, updateEmployee, currentEmployee, setCurre
     email: '',
     phone: '',
     position: '',
-    image: ''
+    image: null, // Change to null to hold the uploaded file
   });
 
   useEffect(() => {
@@ -20,29 +20,54 @@ function UpdateEmployee({ addEmployee, updateEmployee, currentEmployee, setCurre
         email: '',
         phone: '',
         position: '',
-        image: ''
+        image: null, // Reset to null for a new employee
       });
     }
   }, [currentEmployee]);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, files } = e.target;
+    if (type === 'file') {
+      setFormData({ ...formData, [name]: files[0] }); // Store the file
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (currentEmployee) {
-      updateEmployee(formData); // Update the employee details
+    const employeeData = { ...formData };
+
+    // If an image is uploaded, create a FileReader to read the file for preview
+    if (formData.image) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        employeeData.image = reader.result; // Convert the file to base64 string for storage
+        // Proceed with update or add
+        if (currentEmployee) {
+          updateEmployee(employeeData); // Update the employee details
+        } else {
+          addEmployee(employeeData); // Add a new employee
+        }
+      };
+      reader.readAsDataURL(formData.image); // Read the file
     } else {
-      addEmployee(formData); // Add a new employee
+      // If no image is uploaded, proceed directly with the update or add
+      if (currentEmployee) {
+        updateEmployee(employeeData); // Update the employee details
+      } else {
+        addEmployee(employeeData); // Add a new employee
+      }
     }
+
+    // Reset the form after submission
     setFormData({
       id: '',
       name: '',
       email: '',
       phone: '',
       position: '',
-      image: ''
+      image: null, // Reset image to null
     });
     setCurrentEmployee(null); // Clear the current employee
   };
@@ -97,10 +122,9 @@ function UpdateEmployee({ addEmployee, updateEmployee, currentEmployee, setCurre
           className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
-          type="text"
+          type="file"
           name="image"
-          placeholder="Image URL"
-          value={formData.image}
+          accept="image/*"
           onChange={handleChange}
           className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />

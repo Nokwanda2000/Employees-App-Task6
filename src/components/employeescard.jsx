@@ -67,8 +67,17 @@ function EmployeeList() {
       <ul className="space-y-4">
         {filteredEmployees.length > 0 ? (
           filteredEmployees.map((employee) => (
-            <li key={employee.id} className="flex justify-between items-center p-4 border border-gray-200 rounded-md hover:bg-gray-50 transition duration-200">
-              <div className="flex-1">
+            <li key={employee.id} className="flex items-center p-4 border border-gray-200 rounded-md hover:bg-gray-50 transition duration-200">
+              <div className="flex-shrink-0 w-16 h-16">
+                {employee.image ? (
+                  <img src={employee.image} alt={employee.name} className="w-full h-full rounded-full object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-gray-200 rounded-full flex items-center justify-center">
+                    <span className="text-gray-400">No Image</span>
+                  </div>
+                )}
+              </div>
+              <div className="flex-1 ml-4">
                 <h3 className="font-semibold text-gray-800">{employee.name}</h3>
                 <p className="text-gray-600">{employee.position}</p>
                 <span className="text-gray-500">{employee.id}</span>

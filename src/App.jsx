@@ -13,9 +13,10 @@ import Registerpage from './pages/registerpage';
 function App() {
 
   return (
-    <>   
+    <>  
+      
 <BrowserRouter>
-      <Layout />
+<Layout /> 
       <Routes>
         <Route path="/" element={<Landingpage />} />
         <Route path="/registerpage" element={<Registerpage />} />
